@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+        <bean class="ru.specialist.spring.xml.Computer" id="myComputer">
+            <property name="cpu">
+                <!--            <bean class="ru.specialist.spring.xml.IntelCPU" />-->
+                <!--            <ref bean="cpuMadeByFactory" />-->
+                <ref bean="intelCPU" />
+            </property>
+
+            <!--        <constructor-arg name="cpu" ref="intelCPU"/>-->
+
+            <property name="memoryList">
+                <list>
+                    <ref bean="kingston1" />
+                    <ref bean="sony1" />
+                    <bean class="ru.specialist.spring.xml.SonyMemory" />
+                    <ref bean="kingston2" />
+                    <bean class="ru.specialist.spring.xml.KingstonMemory" />
+                </list>
+            </property>
+
+            <property name="storageList">
+                <list>
+                <bean class="ru.specialist.spring.xml.Storage1" />
+                <bean class="ru.specialist.spring.xml.Storage2" />
+                <bean class="ru.specialist.spring.xml.Storage1" />
+            </list>
+        </property>
+            <property name="screen">
+                <ref bean="monitor-base" />
+            </property>
+        </bean>
+
+    <!--    CPU -->
+
+    <bean class="ru.specialist.spring.xml.IntelCPU" id="intelCPU"/>
+    <bean class="ru.specialist.spring.xml.AmdCpu" id="amdCPU"/>
+    <bean class="ru.specialist.spring.xml.StaticCPUFactory"
+          factory-method="createCPU"
+          id="cpuMadeByFactory">
+        <constructor-arg name="name" value="joergerg"/>
+    </bean>
+
+    <!--    Memory -->
+
+    <bean class="ru.specialist.spring.xml.KingstonMemory" id="kingston1"/>
+    <bean class="ru.specialist.spring.xml.KingstonMemory" id="kingston2"/>
+    <bean class="ru.specialist.spring.xml.SonyMemory" id="sony1"/>
+    <bean class="ru.specialist.spring.xml.MonitorAcer" id="monitor-base"/>
+
+</beans>
